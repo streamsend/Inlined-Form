@@ -1,0 +1,59 @@
+<script>
+ss_thank_you_message = "Thank you for signing up.";
+ss_event_name        = "StreamSend Signup Form";
+ss_account_id        = 351941;
+</script>
+
+<form id="streamsend_form" name="streamsend_form" method="post">
+    <div>
+        <label>Email</label>
+        <input placeholder="Email" type="1email" name="email_address" id="email" tabindex="1" autofocus />
+        <div id="streamsend-email-error" class="streamsend-error"></div>
+    </div>
+    <div>
+        <button type="submit" name="submit" id="submit" tabindex="10">Send</button>
+        <div id="streamsend-success" class="streamsend-success"></div>
+    </div>
+</form>
+<div id="streamsend_form_success"></div>
+
+<script src="//cdn.statstrk01.com/assets/javascripts/sdk2.js" async></script>
+<script>
+document.getElementById('streamsend_form').addEventListener('submit', function(event) {
+	StreamSendSubmit(event.target);
+	event.preventDefault();
+	function StreamSendSubmit(form) {
+	    if (validEmail(form)) {
+		return false;
+	    } else {
+	       document.getElementById('streamsend_form').innerHTML = "";
+	       document.getElementById('streamsend_form_success').innerHTML = ss_thank_you_message;
+
+		    window._ssstats = window._ssstats || [];
+		    _ssstats.push([
+			'configure', {
+			    accountId: ss_account_id
+			}
+		    ]);
+		    _ssstats.push(['publish', ss_event_name]);
+
+	       return false;
+	    }
+	}
+	function validEmail(form)   
+	{  
+	 if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email_address.value))  
+	  {  
+	    form.email_address.style.background = 'White';
+	    document.getElementById('streamsend-email-error').innerHTML = '';
+	    return false;
+	  }
+	  else {
+	    form.email_address.style.background = 'Red';
+	    document.getElementById('streamsend-email-error').innerHTML = "Please enter a valid email address";
+	    return true;
+	  }
+	}  
+}, false);
+</script>
+
