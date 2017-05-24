@@ -1,4 +1,6 @@
 # Inlined-Form
+Download the example.html file from this repo and use as a starting point. 
+
 ## Configuration
 Update the configuration block with information.
 
