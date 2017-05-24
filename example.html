@@ -44,9 +44,6 @@ document.getElementById('streamsend_form').addEventListener('submit', function(e
 	    if (validEmail(form)) {
 		return false;
 	    } else {
-	       document.getElementById('streamsend_form').innerHTML = "";
-	       document.getElementById('streamsend_form_success').innerHTML = ss_thank_you_message;
-
 		    window._ssstats = window._ssstats || [];
 		    _ssstats.push([
 			'configure', {
@@ -56,6 +53,8 @@ document.getElementById('streamsend_form').addEventListener('submit', function(e
 		    _ssstats.push(['identify', form.email_address.value]);
 		    _ssstats.push(['publish', ss_event_name]);
 
+	       document.getElementById('streamsend_form').innerHTML = "";
+	       document.getElementById('streamsend_form_success').innerHTML = ss_thank_you_message;
 	       return false;
 	    }
 	}
