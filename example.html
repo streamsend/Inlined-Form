@@ -9,7 +9,7 @@ ss_account_id        = 1234;
 .field-error {background: red;}
 
 /* class for error message */
-.streamsend-error {background: red; }
+.streamsend-error {color: red; }
 
 /* id for the streamsend form */
 #streamsend_form { }
@@ -28,7 +28,7 @@ ss_account_id        = 1234;
 <form id="streamsend_form" name="streamsend_form" method="post">
     <div>
         <label>Email</label>
-        <input placeholder="Email" type="1email" id="email_address" name="email_address" tabindex="1" autofocus />
+        <input placeholder="Email" type="email" id="email_address" name="email_address" tabindex="1" autofocus />
         <button type="submit" name="submit" id="streamsend-submit" tabindex="10">Send</button>
         <div id="streamsend-error" class="streamsend-error"></div>
     </div>
@@ -53,6 +53,7 @@ document.getElementById('streamsend_form').addEventListener('submit', function(e
 			    accountId: ss_account_id
 			}
 		    ]);
+		    _ssstats.push(['identify', form.email_address.value]);
 		    _ssstats.push(['publish', ss_event_name]);
 
 	       return false;
